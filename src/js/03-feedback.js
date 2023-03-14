@@ -6,7 +6,7 @@ const textarea = document.querySelector('textarea');
 const STORAG_KEY = 'feedback-form-state'
 
 onForm.addEventListener('submit', onFormSubmit);
-onForm.addEventListener('input', throttle(onFormInput, 1000));
+textarea.addEventListener('input', throttle(onFormInput, 1000));
 
 const formData = {};
 
@@ -19,8 +19,8 @@ function onFormSubmit(evt) {
 };
 
 function onFormInput(evt) {
-  formData[evt.target.name] = e.target.value;
-  console.log(localStorage.setItem(STORAG_KEY, JSON.stringify(formData)));
+  const messaga = evt.target.value;
+  localStorage.setItem(STORAG_KEY, messaga);
 };
 
 function populateTextarea() {
