@@ -12,6 +12,7 @@ const formData = {};
 
 populateTextarea();
 
+// При отправке формы очищается пoля и хранилище
 function onFormSubmit(evt) {
   evt.preventDefault();
   evt.currentTarget.reset();
@@ -29,7 +30,9 @@ function onFormInput(evt) {
 function populateTextarea() {
   const savedMessage = localStorage.getItem(STORAG_KEY);
   const savedData = JSON.parse(savedMessage);
-  
+
+  //Если поле не пустое, то есть строка не пустая тогда true и  
+  // данные из хранилища вносится в пoля месседж e - mail
   if (savedMessage) {
     textarea.value = savedData.message;
     email.value = savedData.email;
