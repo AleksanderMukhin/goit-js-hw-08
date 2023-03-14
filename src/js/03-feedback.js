@@ -6,7 +6,7 @@ const textarea = document.querySelector('textarea');
 const STORAG_KEY = 'feedback-form-state'
 
 onForm.addEventListener('submit', onFormSubmit);
-textarea.addEventListener('input', throttle(onFormInput, 1000));
+onForm.addEventListener('input', throttle(onFormInput, 1000));
 
 const formData = {};
 
@@ -18,15 +18,20 @@ function onFormSubmit(evt) {
   localStorage.removeItem(STORAG_KEY);
 };
 
+// В объект форм дата добавляет ключ с названием поля и  
+// присваивает ему значение, то что водится в это поле
 function onFormInput(evt) {
-  const messaga = evt.target.value;
-  localStorage.setItem(STORAG_KEY, messaga);
+  formData[evt.target.name] = evt.target.value;
+  localStorage.setItem(STORAG_KEY, JSON.stringify(formData));
 };
 
+// Сохраняет введённый текст и вставляет после перезагрузки страницы
 function populateTextarea() {
   const savedMessage = localStorage.getItem(STORAG_KEY);
-
+  const savedData = JSON.parse(savedMessage);
+  
   if (savedMessage) {
-    textarea.value = savedMessage;
+    textarea.value = savedData.message;
+    email.value = savedData.email;
   }
 };
