@@ -15,7 +15,18 @@ populateTextarea();
 // При отправке формы очищается пoля и хранилище
 function onFormSubmit(evt) {
   evt.preventDefault();
+
+  if (!email.value || !textarea.value) {
+   return alert ("Please fill in all the fields!");
+  }
+  
+  // чистим пoля
   evt.currentTarget.reset();
+
+  // выводим в консоль
+  console.log(JSON.parse(localStorage.getItem(STORAG_KEY)));
+
+  // чистим хранилище
   localStorage.removeItem(STORAG_KEY);
 };
 
