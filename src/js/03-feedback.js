@@ -18,16 +18,16 @@ function onFormSubmit(evt) {
 
   if (!email.value || !textarea.value) {
    return alert ("Please fill in all the fields!");
-  }
-  
-  // чистим пoля
-  evt.currentTarget.reset();
+  } 
 
   // выводим в консоль
   console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
 
   // чистим хранилище
   localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem('email');
+   // чистим пoля
+  evt.currentTarget.reset();
 };
 
 // В объект форм дата добавляет ключ с названием поля и  
